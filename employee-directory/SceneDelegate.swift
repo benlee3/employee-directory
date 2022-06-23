@@ -20,10 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         let navigationController = UINavigationController()
-        let store = Store(initialValue: .initial, reducer: stateReducer)
-        coordinator = AppCoordinator(navigationController: navigationController)
+//        let store = Store(initialValue: .initial, reducer: appReducer)
+        coordinator = AppCoordinator(navigationController: navigationController, store: Store(initialValue: .initial, reducer: appReducer))
         coordinator?.start()
-        store.coordinator = coordinator
+//        store.coordinator = coordinator
         
         window.rootViewController = navigationController
         
