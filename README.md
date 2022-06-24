@@ -7,6 +7,8 @@
 * Open employee-directory.xcodeproj and run the project
 * Kingfisher is a dependency and was added via SPM
   * It should be installed by Xcode automatically
+* The app was developed on an iPhone 12 Pro Max and is locked in portrait mode.
+  * Landscape mode is available for iPads. Tested on an iPad Pro (12.9 inch).
 
 ### Tests
 * Run the testing target to run the suite of XCTests
