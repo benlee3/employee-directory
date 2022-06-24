@@ -43,7 +43,8 @@ class AppCoordinator: Coordinator {
     }
     
     func presentEmployeeDetails(index: Int) {
-        let employeeDetailViewController = EmployeeDetailViewController(viewModel: EmployeeDetailViewModel(employee: store.value.employees[index]))
+        guard let employee = store.value.employees[safe: index] else { return }
+        let employeeDetailViewController = EmployeeDetailViewController(viewModel: EmployeeDetailViewModel(employee: employee))
         employeeDetailViewController.modalPresentationStyle = .formSheet
         navigationController.present(employeeDetailViewController, animated: true)
     }
@@ -51,7 +52,7 @@ class AppCoordinator: Coordinator {
     
 }
 
-enum CoordinatorEffect {
+enum CoordinatorEffect: Equatable {
     case showList
     case showEmployee(Int)
 }

@@ -57,7 +57,7 @@ class EmployeeListViewController: UIViewController {
                 case .completed:
                     self.employeeListView.showList()
                 case .error(let error):
-                    print("error") // log error here
+                    print("error: \(error)") // log error here
                     self.employeeListView.showErrorView()
                 case .incomplete:
                     self.employeeListView.showNoResultsView()

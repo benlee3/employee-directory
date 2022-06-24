@@ -8,12 +8,6 @@
 import Combine
 import Foundation
 
-struct AppState {
-    var employees: [Employee]
-    
-    static var initial = AppState(employees: [Employee]())
-}
-
 // Very much inspired from the Composable Architecture/Point Free team. A similar/simplified version of their architecture adapted for UIKit
 class Store<Value, Action, NavSideEffect> {
     let reducer: (inout Value, Action) -> NavSideEffect?
@@ -45,8 +39,14 @@ func appReducer(state: inout AppState, action: AppAction) -> CoordinatorEffect? 
     }
 }
 
-enum AppAction {
+enum AppAction: Equatable {
     case loadApp
     case employeeSelected(Int)
     case setEmployees([Employee])
+}
+
+struct AppState {
+    var employees: [Employee]
+    
+    static var initial = AppState(employees: [Employee]())
 }

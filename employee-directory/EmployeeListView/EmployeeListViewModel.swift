@@ -9,15 +9,24 @@ import Combine
 import Foundation
 import UIKit
 
+extension GetEmployeesRequest: GetEmployeesRequestProvider {
+    func request() -> GetEmployeesRequestProvider {
+        return GetEmployeesRequest()
+    }
+}
+
 class EmployeeListViewModel: BindableViewModel {
     var store: Store<AppState, AppAction, CoordinatorEffect>
     var cancellables = Set<AnyCancellable>()
+    var getEmployeeRequestProvider: GetEmployeesRequestProvider
     
     @Published var viewState: ViewState = .notLoaded
     @Published var employees: [Employee]?
     
-    required init(store: Store<AppState, AppAction, CoordinatorEffect>) {
+    required init(store: Store<AppState, AppAction, CoordinatorEffect>,
+                  getEmployeeRequestProvider: GetEmployeesRequestProvider = GetEmployeesRequest()) {
         self.store = store
+        self.getEmployeeRequestProvider = getEmployeeRequestProvider
         bindToState()
     }
     
@@ -32,7 +41,7 @@ class EmployeeListViewModel: BindableViewModel {
     
     func retrieveAllEmployees() {
         self.viewState = .loading
-        GetEmployeesRequest().execute()
+        getEmployeeRequestProvider.execute(urlSession: .shared)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished: break
