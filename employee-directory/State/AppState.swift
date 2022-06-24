@@ -10,7 +10,6 @@ import Foundation
 
 struct AppState {
     var employees: [Employee]
-    var selectedEmployee: Employee?
     
     static var initial = AppState(employees: [Employee]())
 }
@@ -39,8 +38,7 @@ func appReducer(state: inout AppState, action: AppAction) -> CoordinatorEffect? 
     case .loadApp:
         return .showList
     case let .employeeSelected(index):
-        state.selectedEmployee = state.employees[index]
-        return nil
+        return .showEmployee(index)
     case let .setEmployees(employees):
         state.employees = employees
         return nil

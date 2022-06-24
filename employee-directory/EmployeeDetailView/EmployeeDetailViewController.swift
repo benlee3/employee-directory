@@ -40,10 +40,6 @@ class EmployeeDetailViewController: UIViewController {
         viewModel.retrieveLargeImage(view: employeeDetailView)
     }
     
-    override func viewWillLayoutSubviews() {
-//        employeeDetailView.setupView()
-    }
-    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         employeeDetailView.setupView()

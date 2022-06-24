@@ -12,13 +12,11 @@ class EmployeeListCell: UICollectionViewCell {
     let container: UIStackView = {
         let stack = UIStackView(alignment: .center, axis: .vertical, distribution: .equalCentering, spacing: 10)
         stack.setDirectionalLayoutMargins(top: 10, leading: 10, bottom: 10, trailing: 10)
-//        stack.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return stack
     }()
     
     let infoStack: UIStackView = {
         let stack = UIStackView(alignment: .fill, axis: .vertical, distribution: .equalCentering)
-//        stack.setContentHuggingPriority(.defaultLow, for: .vertical)
         return stack
     }()
     
@@ -51,7 +49,6 @@ class EmployeeListCell: UICollectionViewCell {
     func setupCell(employee: Employee) {
         self.backgroundColor = .lightGray
         self.layer.cornerRadius = 16
-//        self.addSubviewAndFillSafeArea(container)
         self.addSubviewAndAnchor(container,
                                  centerX: self.centerXAnchor,
                                  centerY: self.centerYAnchor)
