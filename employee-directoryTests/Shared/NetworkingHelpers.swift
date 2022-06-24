@@ -4,7 +4,7 @@
 //
 //  Created by Ben Lee on 6/24/22.
 //
-// https://www.swiftbysundell.com/articles/testing-networking-logic-in-swift/
+// source: https://www.swiftbysundell.com/articles/testing-networking-logic-in-swift/
 
 import Foundation
 import XCTest

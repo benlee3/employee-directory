@@ -9,6 +9,7 @@ import Combine
 import Foundation
 
 // Very much inspired from the Composable Architecture/Point Free team. A similar/simplified version of their architecture adapted for UIKit
+// source: https://github.com/pointfreeco/swift-composable-architecture
 class Store<Value, Action, NavSideEffect> {
     let reducer: (inout Value, Action) -> NavSideEffect?
     weak var coordinator: Coordinator?

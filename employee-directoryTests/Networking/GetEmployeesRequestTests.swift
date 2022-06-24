@@ -9,15 +9,6 @@
 import XCTest
 
 class GetEmployeesRequestTests: XCTestCase {
-    
-    override func setUpWithError() throws {
-        
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testSuccessfulCall() throws {
         let session = URLSession(mockResponder: Mocks.MockDataURLResponder.self)
         let publisher = GetEmployeesRequest().execute(urlSession: session)
@@ -33,8 +24,4 @@ class GetEmployeesRequestTests: XCTestCase {
             XCTAssertEqual(error as! NetworkError, NetworkError.decodeError("The data couldn’t be read because it isn’t in the correct format."))
         }
     }
-}
-
-fileprivate extension GetEmployeesResponse {
-    
 }
