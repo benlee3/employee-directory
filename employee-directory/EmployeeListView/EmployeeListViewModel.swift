@@ -9,14 +9,14 @@ import Combine
 import Foundation
 import UIKit
 
-class EmployeeListViewModel: ViewModel {
-    var store: Store<AppState, AppAction>
+class EmployeeListViewModel: BindableViewModel {
+    var store: Store<AppState, AppAction, CoordinatorAction>
     var cancellables = Set<AnyCancellable>()
     
     @Published var viewState: ViewState = .notLoaded
     @Published var employees: [Employee]?
     
-    required init(store: Store<AppState, AppAction>) {
+    required init(store: Store<AppState, AppAction, CoordinatorAction>) {
         self.store = store
         bindToState()
     }
@@ -48,5 +48,9 @@ class EmployeeListViewModel: ViewModel {
                 }
             })
             .store(in: &cancellables)
+    }
+    
+    func employeeSelected(index: Int) {
+        store.send(.employeeSelected(index))
     }
 }

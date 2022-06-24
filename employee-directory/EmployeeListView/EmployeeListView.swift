@@ -16,7 +16,7 @@ class EmployeeListView: UIView {
         layout.itemSize = CGSize(width: 400, height: 400)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.register(EmployeeListCell.self, forCellWithReuseIdentifier: "EmployeeCell")
-        cv.setContentHuggingPriority(.defaultLow, for: .vertical)
+//        cv.setContentHuggingPriority(.defaultLow, for: .vertical)
         cv.backgroundColor = .clear
         cv.refreshControl = UIRefreshControl()
         return cv

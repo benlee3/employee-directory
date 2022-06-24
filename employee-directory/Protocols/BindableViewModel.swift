@@ -8,12 +8,11 @@
 import Combine
 import Foundation
 
-protocol ViewModel {
-    var store: Store<AppState, AppAction> { get set }
+protocol BindableViewModel {
+    var store: Store<AppState, AppAction, CoordinatorAction> { get set }
     var cancellables: Set<AnyCancellable> { get set }
     
-//    init()
-    init(store: Store<AppState, AppAction>)
+    init(store: Store<AppState, AppAction, CoordinatorAction>)
 }
 
 enum ViewState {
@@ -23,10 +22,3 @@ enum ViewState {
     case incomplete
     case error(String?)
 }
-
-//extension ViewModel {
-//    init(store: Store<AppState, AppAction>) {
-//        self.store = store
-//        self.cancellables = Set<AnyCancellable>()
-//    }
-//}

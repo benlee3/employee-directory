@@ -13,6 +13,7 @@ class EmployeeListViewController: UIViewController {
     let employeeListView = EmployeeListView()
     let viewModel: EmployeeListViewModel
     var cancellables = Set<AnyCancellable>()
+    weak var coordinator: Coordinator?
     
     init(viewModel: EmployeeListViewModel) {
         self.viewModel = viewModel
@@ -42,7 +43,7 @@ class EmployeeListViewController: UIViewController {
     }
     
     func bindToViewModel() {
-        self.viewModel.$employees.sink { [unowned self] _ in
+        viewModel.$employees.sink { [unowned self] _ in
             DispatchQueue.main.async {
                 self.employeeListView.collectionView.reloadData()
             }
@@ -56,6 +57,7 @@ class EmployeeListViewController: UIViewController {
                 case .completed:
                     self.employeeListView.showList()
                 case .error(let error):
+                    print("error") // log error here
                     self.employeeListView.showErrorView()
                 case .incomplete:
                     self.employeeListView.showNoResultsView()
@@ -73,7 +75,7 @@ class EmployeeListViewController: UIViewController {
     }
     
     @objc func refresh() {
-        self.viewModel.retrieveAllEmployees()
+        viewModel.retrieveAllEmployees()
     }
 }
 
@@ -81,16 +83,18 @@ extension EmployeeListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = view.frame.size.width
         let height = view.frame.size.height
-        if UIDevice.current.orientation.isLandscape {
-            return CGSize(width: width * 0.45, height: height * 0.5)
+        if traitCollection.horizontalSizeClass == .compact {
+            return CGSize(width: (width - 30)/2, height: height / 3)
+        } else {
+            return CGSize(width: (width - 30)/2, height: height / 3)
         }
-        return CGSize(width: width * 0.45, height: height * 0.3)
+        
     }
 }
 
 extension EmployeeListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print()
+        viewModel.employeeSelected(index: indexPath.row)
     }
 }
 
@@ -101,7 +105,7 @@ extension EmployeeListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmployeeCell", for: indexPath) as? EmployeeListCell,
-              let employees = self.viewModel.employees else { return UICollectionViewCell() }
+              let employees = viewModel.employees else { return UICollectionViewCell() }
         cell.setupCell(employee: employees[indexPath.row])
         return cell
     }
@@ -114,11 +118,5 @@ extension EmployeeListViewController: UICollectionViewDataSource {
         else { return }
         
         cell.retrieveImage(for: url)
-    }
-}
-
-extension EmployeeListViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print("contentOffset: \(scrollView.contentOffset.y)")
     }
 }

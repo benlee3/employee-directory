@@ -10,28 +10,28 @@ import UIKit
 
 class EmployeeListCell: UICollectionViewCell {
     let container: UIStackView = {
-        let stack = UIStackView(alignment: .center, axis: .vertical, distribution: .fill, spacing: 10)
+        let stack = UIStackView(alignment: .center, axis: .vertical, distribution: .equalCentering, spacing: 10)
         stack.setDirectionalLayoutMargins(top: 10, leading: 10, bottom: 10, trailing: 10)
-        stack.setContentHuggingPriority(.defaultHigh, for: .vertical)
+//        stack.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return stack
     }()
     
     let infoStack: UIStackView = {
-        let stack = UIStackView(alignment: .fill, axis: .vertical, distribution: .fillEqually)
+        let stack = UIStackView(alignment: .fill, axis: .vertical, distribution: .equalCentering)
 //        stack.setContentHuggingPriority(.defaultLow, for: .vertical)
         return stack
     }()
     
     let employeeImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return imageView
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .boldSystemFont(ofSize: UIFont.labelFontSize)
-//        label.font = .systemFont(ofSize: UIFont.size)
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.textAlignment = .center
         return label
     }()
@@ -39,8 +39,7 @@ class EmployeeListCell: UICollectionViewCell {
     let teamLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: UIFont.systemFontSize)
-//        label.font = .systemFont(ofSize: UIFont.labelFontSize)
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.textAlignment = .center
         return label
     }()
@@ -52,7 +51,10 @@ class EmployeeListCell: UICollectionViewCell {
     func setupCell(employee: Employee) {
         self.backgroundColor = .lightGray
         self.layer.cornerRadius = 16
-        self.addSubviewAndFillSafeArea(container)
+//        self.addSubviewAndFillSafeArea(container)
+        self.addSubviewAndAnchor(container,
+                                 centerX: self.centerXAnchor,
+                                 centerY: self.centerYAnchor)
         container.addArrangedSubviews(employeeImage, infoStack)
         infoStack.addArrangedSubviews(nameLabel, teamLabel)
         infoStack.anchor(width: self.contentView.frame.size.width * 0.75)
@@ -63,7 +65,7 @@ class EmployeeListCell: UICollectionViewCell {
     func retrieveImage(for url: String) {
         self.employeeImage.kf.indicatorType = .activity
         let roundedCornerProcessor = RoundCornerImageProcessor(cornerRadius: 100, backgroundColor: .lightGray)
-        let diameter = self.contentView.frame.size.width * 0.50
+        let diameter = self.contentView.frame.size.width * 0.40
         self.employeeImage.anchor(width: diameter, height: diameter)
         self.employeeImage.kf.setImage(with: URL(string: url), options: [ .processor(roundedCornerProcessor)])
     }
