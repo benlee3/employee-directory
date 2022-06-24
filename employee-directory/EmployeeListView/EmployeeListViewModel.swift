@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 class EmployeeListViewModel: BindableViewModel {
-    var store: Store<AppState, AppAction, CoordinatorAction>
+    var store: Store<AppState, AppAction, CoordinatorEffect>
     var cancellables = Set<AnyCancellable>()
     
     @Published var viewState: ViewState = .notLoaded
     @Published var employees: [Employee]?
     
-    required init(store: Store<AppState, AppAction, CoordinatorAction>) {
+    required init(store: Store<AppState, AppAction, CoordinatorEffect>) {
         self.store = store
         bindToState()
     }

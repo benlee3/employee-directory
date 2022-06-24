@@ -22,8 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         let store = Store(initialValue: .initial, reducer: appReducer)
         coordinator = AppCoordinator(navigationController: navigationController, store: store)
-        coordinator?.start()
         store.coordinator = coordinator
+        store.send(.loadApp)
         
         window.rootViewController = navigationController
         

@@ -28,15 +28,16 @@ class Store<Value, Action, NavSideEffect> {
     }
 
     func send(_ action: Action) {
-        self.reducer(&self.value, action)
-//        if let coordinatorAction = self.reducer(&self.value, action) {
-//            coordinator?.handleAction(action: coordinatorAction)
-//        }
+        if let coordinatorAction = self.reducer(&self.value, action) as? CoordinatorEffect {
+            coordinator?.handleAction(action: coordinatorAction)
+        }
     }
 }
 
-func appReducer(state: inout AppState, action: AppAction) -> CoordinatorAction? {
+func appReducer(state: inout AppState, action: AppAction) -> CoordinatorEffect? {
     switch action {
+    case .loadApp:
+        return .showList
     case let .employeeSelected(index):
         state.selectedEmployee = state.employees[index]
         return nil
@@ -47,6 +48,7 @@ func appReducer(state: inout AppState, action: AppAction) -> CoordinatorAction? 
 }
 
 enum AppAction {
+    case loadApp
     case employeeSelected(Int)
     case setEmployees([Employee])
 }

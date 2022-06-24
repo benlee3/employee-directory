@@ -33,9 +33,9 @@ class EmployeeListViewController: UIViewController {
         employeeListView.collectionView.dataSource = self
         employeeListView.collectionView.delegate = self
         employeeListView.collectionView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        viewModel.retrieveAllEmployees()
         bindToViewModel()
         setupNavigationBar()
+        viewModel.retrieveAllEmployees()
     }
     
     override func viewWillLayoutSubviews() {

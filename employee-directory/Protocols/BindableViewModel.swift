@@ -9,10 +9,10 @@ import Combine
 import Foundation
 
 protocol BindableViewModel {
-    var store: Store<AppState, AppAction, CoordinatorAction> { get set }
+    var store: Store<AppState, AppAction, CoordinatorEffect> { get set }
     var cancellables: Set<AnyCancellable> { get set }
     
-    init(store: Store<AppState, AppAction, CoordinatorAction>)
+    init(store: Store<AppState, AppAction, CoordinatorEffect>)
 }
 
 enum ViewState {
