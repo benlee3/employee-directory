@@ -5,6 +5,7 @@
 //  Created by Ben Lee on 6/17/22.
 //
 
+//import CoreData
 import UIKit
 
 @main
@@ -29,6 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+//    lazy var persistentContainer: NSPersistentContainer = {
+//        let container = NSPersistentContainer(name: "EmployeeDirectory")
+//        container.loadPersistentStores { description, error in
+//            if let error = error {
+//                fatalError("Unable to load persistent stores: \(error)")
+//            }
+//        }
+//        return container
+//    }()
 }
 

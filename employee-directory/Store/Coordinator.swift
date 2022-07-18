@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CoreData
 import Foundation
 import UIKit
 
@@ -20,6 +21,16 @@ class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
     var store: Store<AppState, AppAction, CoordinatorEffect>
     var cancellables = Set<AnyCancellable>()
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "EmployeeDirectory")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Unable to load persistent stores: \(error)")
+            }
+        }
+        return container
+    }()
     
     init(navigationController: UINavigationController,
          store: Store<AppState, AppAction, CoordinatorEffect>) {
@@ -37,7 +48,7 @@ class AppCoordinator: Coordinator {
     }
     
     func showList() {
-        let vc = EmployeeListViewController(viewModel: EmployeeListViewModel(store: self.store))
+        let vc = EmployeeListViewController(viewModel: EmployeeListViewModel(store: self.store, persistentContainer: persistentContainer))
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }

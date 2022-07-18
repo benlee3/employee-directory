@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		786B91CD2885E70D00661F18 /* EmployeeDirectory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 786B91CB2885E70D00661F18 /* EmployeeDirectory.xcdatamodeld */; };
 		78729899285CD2A500FCE1C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78729898285CD2A500FCE1C9 /* AppDelegate.swift */; };
 		7872989B285CD2A500FCE1C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872989A285CD2A500FCE1C9 /* SceneDelegate.swift */; };
 		7872989D285CD2A500FCE1C9 /* EmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872989C285CD2A500FCE1C9 /* EmployeeListViewController.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		786B91CC2885E70D00661F18 /* EmployeeDirectory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeDirectory.xcdatamodel; sourceTree = "<group>"; };
 		78729895285CD2A500FCE1C9 /* employee-directory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "employee-directory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78729898285CD2A500FCE1C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7872989A285CD2A500FCE1C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				787298A1285CD2A800FCE1C9 /* Assets.xcassets */,
 				787298A3285CD2A800FCE1C9 /* LaunchScreen.storyboard */,
 				787298A6285CD2A800FCE1C9 /* Info.plist */,
+				786B91CB2885E70D00661F18 /* EmployeeDirectory.xcdatamodeld */,
 			);
 			path = "employee-directory";
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				787298AE285CD4BC00FCE1C9 /* Coordinator.swift in Sources */,
 				787298BE285D1E2F00FCE1C9 /* BindableViewModel.swift in Sources */,
 				787298B1285CD52C00FCE1C9 /* AppState.swift in Sources */,
+				786B91CD2885E70D00661F18 /* EmployeeDirectory.xcdatamodeld in Sources */,
 				787298C0285E247300FCE1C9 /* EmployeeListView.swift in Sources */,
 				787AB5D128658CF90061C886 /* Collection+safeIndex.swift in Sources */,
 				787298D02861377B00FCE1C9 /* GetEmployeesRequest.swift in Sources */,
@@ -708,6 +712,19 @@
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		786B91CB2885E70D00661F18 /* EmployeeDirectory.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				786B91CC2885E70D00661F18 /* EmployeeDirectory.xcdatamodel */,
+			);
+			currentVersion = 786B91CC2885E70D00661F18 /* EmployeeDirectory.xcdatamodel */;
+			path = EmployeeDirectory.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7872988D285CD2A500FCE1C9 /* Project object */;
 }
